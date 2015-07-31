@@ -11,7 +11,7 @@ static FILE *db_open(const char *path, const char *mode)
 	return fopen(path, mode);
 }
 
-static void db_close(File *db)
+static void db_close(FILE *db)
 {
 	fclose(db);
 }
@@ -94,7 +94,7 @@ int db_init()
 	if(access(DB_FILE, W_OK) == -1) {
 		FILE *db = db_open(DB_FILE, "w");
 		check(db, "Cannot open database: %s", DB_FILE);
-		db_close();
+		db_close(db);
 	}
 
 	apr_pool_destroy(p);

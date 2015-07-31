@@ -1,4 +1,4 @@
-ifndef _db_h
+#ifndef _db_h
 #define _db_h
 
 #define DB_FILE "/usr/local/.devpkg/db"

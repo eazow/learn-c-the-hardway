@@ -26,7 +26,7 @@ int safercopy(int from_len, char *from, int to_len, char *to)
 	int max = from_len>to_len-1?to_len-1:from_len;
 
 	//to_len must have at least 1 byte
-	if(form_len<0 || to_len<=0) {
+	if(from_len<0 || to_len<=0) {
 		return -1;
 	}
 	

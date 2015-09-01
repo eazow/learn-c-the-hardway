@@ -46,7 +46,7 @@ void list_push(List *list, void *value)
 	}
 	else {
 		list->last->next = node;
-		node->pre = list->last;
+		node->prev = list->last;
 		list->last = node;
 	}
 

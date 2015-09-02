@@ -4,7 +4,7 @@ for in in tests/*_tests
 do
 	if test -f $i
 	then
-		if $VALGRIND ./$i 2>> tests/tests.log
+		if sudo $VALGRIND ./$i 2>> tests/tests.log
 		then
 			echo $i pass
 		else

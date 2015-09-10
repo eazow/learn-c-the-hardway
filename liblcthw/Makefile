@@ -31,8 +31,8 @@ build:
 
 # The Unit Tests
 .PHONY: tests
-tests: CFLAGS += $(TARGET)
 tests: $(TESTS)
+tests: CFLAGS += $(TARGET)
 	sh tests/runtests.sh
 
 valgrind:

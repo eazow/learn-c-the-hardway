@@ -1,4 +1,5 @@
 CFLAGS=-g -O2 -Wall -Wextra -Isrc -rdynamic -DNDEBUG $(OPTFLAGS)
+@echo "CFLAGS: " $(CFLAGS)
 LIBS=-ldl $(OPTLIBS)
 PREFIX?=/usr/local
 
@@ -31,8 +32,8 @@ build:
 
 # The Unit Tests
 .PHONY: tests
-tests: $(TESTS)
 tests: CFLAGS += $(TARGET)
+tests: $(TESTS)
 	sh tests/runtests.sh
 
 valgrind:

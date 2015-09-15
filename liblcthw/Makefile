@@ -1,5 +1,4 @@
 CFLAGS=-g -O2 -Wall -Wextra -Isrc -rdynamic -DNDEBUG $(OPTFLAGS)
-@echo "CFLAGS: " $(CFLAGS)
 LIBS=-ldl $(OPTLIBS)
 PREFIX?=/usr/local
 

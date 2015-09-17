@@ -20,6 +20,7 @@ List *create_words()
 
 int is_sorted(List *words)
 {
+	ListNode *cur = NULL;
 	for(cur=words->first; cur!=NULL; cur=cur->next) {
 		if(cur->next && strcpm(cur->value, cur->next->value)>0) {
 			debug("%s %s", (char *)cur->value, (char *)cur->next->value);

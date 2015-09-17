@@ -31,9 +31,9 @@ build:
 
 # The Unit Tests
 .PHONY: tests
-#tests: CFLAGS += $(TARGET)
-tests:
-	$(CC) $(CFLAGS) $(TEST_SRC) $(TARGET)  -o $(TESTS)
+tests: CFLAGS += $(TARGET)
+tests: $(TESTS)
+#	$(CC) $(CFLAGS) $(TEST_SRC) $(TARGET)  -o $(TESTS)
 	sh tests/runtests.sh
 
 valgrind:

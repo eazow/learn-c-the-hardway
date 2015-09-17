@@ -27,6 +27,8 @@ int is_sorted(List *words)
 			return 0;
 		}
 	}
+
+	return 1;
 }
 
 char *test_bubble_sort()

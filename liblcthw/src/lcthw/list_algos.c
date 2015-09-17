@@ -18,7 +18,8 @@ int list_bubble_sort(List *list, list_compare cmp)
 
 	do {
 		sorted = 1;
-		for(List *cur = list->first; cur!=NULL; cur = cur->next) {
+		ListNode *cur = NULL;
+		for(cur = list->first; cur!=NULL; cur = cur->next) {
 			if(cur->next) {
 				if(cmp(cur->value, cur->next->value) > 0) {
 					list_node_swap(cur, cur->next);

@@ -19,7 +19,7 @@ char *test_create()
 
 char *test_destroy()
 {
-	darray_destroy();
+	darray_destroy(array);
 
 	return NULL;
 }

@@ -29,6 +29,8 @@ void *darray_pop(DArray *array);
 
 void darray_clear_destroy(DArray *array);
 
+#define DEFAULT_EXPAND_RATE 300
+
 static inline void darray_set(DArray *array, int i, void *el)
 {
 	check(i<array->max, "darray attempt to set past max");

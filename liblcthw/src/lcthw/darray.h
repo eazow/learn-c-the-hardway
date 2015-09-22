@@ -28,3 +28,12 @@ int darray_push(DArray *array, void *element);
 void *darray_pop(DArray *array);
 
 void darray_clear_destroy(DArray *array);
+
+static inline void darray_set(DArray *array, int i, void *el)
+{
+	check(i<array->max, "darray attempt to set past max");
+	if(i > array->end) array->end = i;
+	array->contents[i] = el;
+error:
+	return;
+}

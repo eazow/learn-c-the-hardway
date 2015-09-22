@@ -9,7 +9,7 @@ typedef struct DArray {
 	int end;
 	int max;
 	size_t element_size;
-	size_t expand_size;
+	size_t expand_rate;
 	void **contents;
 } DArray;
 
@@ -39,3 +39,5 @@ static inline void darray_set(DArray *array, int i, void *el)
 error:
 	return;
 }
+
+#endif

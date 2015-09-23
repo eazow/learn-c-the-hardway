@@ -33,3 +33,44 @@ void darray_destroy(DArray *array)
 		free(array);
 	}
 }
+
+int darray_push(DArray *array, void *el)
+{
+	array->contents[array->end] = el;
+	array->end++;
+
+	if(darray_end(array) >= darray_max(array)) {
+		return darray_expand(array);
+	}
+	else {
+		return 0;
+	}
+}
+
+int darray_expand(DArray *array)
+{
+	size_t old_max = array->max;
+	check(darray_resize(array, array->max+array->expand_rate)==0,
+		"Failed to expand array to new size: %d",
+		array->max+(int)array->expand_rate);
+
+	memset(array->contents+old_max, 0, array->expand_rate+1);
+
+}
+
+static inline int darray_resize(DArray *array, size_t newsize)
+{
+	array->max = newsize;
+	check(array->max>0, "The newsize must be > 0.");
+
+	void *contents = realloc(array->contents, array->max*sizeof(void *));
+
+	check_mem(contents);
+
+	array->contents = contents;
+
+	return 0;
+error:
+	return -1;
+
+}

@@ -29,6 +29,12 @@ void *darray_pop(DArray *array);
 
 void darray_clear_destroy(DArray *array);
 
+#define darray_last(A) ((A)->contents[(A)->end-1])
+#define darray_first(A) ((A)->contents[0])
+#define darray_end(A) ((A)->end)
+#define darray_count(A) ((A)->end)
+#define darray_max(A) ((A)->max)
+
 #define DEFAULT_EXPAND_RATE 300
 
 static inline void darray_set(DArray *array, int i, void *el)
@@ -38,6 +44,16 @@ static inline void darray_set(DArray *array, int i, void *el)
 	array->contents[i] = el;
 error:
 	return;
+}
+
+static inline void *darray_new(DArray *array)
+{
+	check(array->element_size>0, "Can't use darray_new on 0 size darrays.");
+
+	return calloc(1, array->element_size);
+
+error:
+	return NULL;
 }
 
 #endif

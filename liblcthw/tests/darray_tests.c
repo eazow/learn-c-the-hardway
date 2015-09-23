@@ -24,10 +24,22 @@ char *test_destroy()
 	return NULL;
 }
 
+char *test_new()
+{
+	val1 = darray_new(array);
+	mu_assert(val1!=NULL, "failed to make a new element");
+
+	val2 = darray_new(array);
+	mu_assert(val2!=NULL, "failed to make a new element");
+
+	return NULL;
+}
+
 char *all_tests() {
 	mu_suite_start();
 
 	mu_run_test(test_create);
+	mu_run_test(test_new);
 	mu_run_test(test_destroy);
 
 	return NULL;

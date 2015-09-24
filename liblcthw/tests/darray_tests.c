@@ -59,7 +59,7 @@ char *test_push()
 		*val = i*333;
 		darray_push(array, val);
 	}
-	mu_assert(array->max==1200, "Wrong max size");
+	mu_assert(array->max==1300, "Wrong max size");
 
 	return NULL;
 }

@@ -54,7 +54,7 @@ char *test_get()
 char *test_push()
 {
 	int i = 0;
-	for(i=0;, i<1000; i++) {
+	for(i=0; i<1000; i++) {
 		int *val = darray_new(array);
 		*val = i*333;
 		darray_push(array, val);

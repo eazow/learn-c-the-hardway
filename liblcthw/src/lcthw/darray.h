@@ -46,6 +46,24 @@ error:
 	return;
 }
 
+static inline void *darray_get(DArray *array, int i)
+{
+	check(i<array->max, "darray attempt to get past max");
+	return array->contents[i];
+
+error:
+	return NULL;
+}
+
+static inline void *darray_remove(DArray *array, int i)
+{
+	void *el = array->contents[i];
+
+	array->contents[i] = NULL;
+
+	return el;
+}
+
 static inline void *darray_new(DArray *array)
 {
 	check(array->element_size>0, "Can't use darray_new on 0 size darrays.");

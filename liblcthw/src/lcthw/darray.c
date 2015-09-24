@@ -72,7 +72,22 @@ int darray_expand(DArray *array)
 		"Failed to expand array to new size: %d",
 		array->max+(int)array->expand_rate);
 
-	memset(array->contents+old_max, 0, array->expand_rate+1);
+	memset(array->contents+old_max, 0, array->expand_rate);
+	return 0;
 
+error:
+	return -1;
 }
 
+int darray_push(DArray *array, void *el)
+{
+	array->contents[array->end] = el;
+	array->end++;
+
+	if(darray_end(array) >= darray_max(array)) {
+		return darray_expand(array);
+	}
+	else {
+		return 0;
+	}
+}

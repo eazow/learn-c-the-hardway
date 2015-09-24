@@ -78,16 +78,3 @@ int darray_expand(DArray *array)
 error:
 	return -1;
 }
-
-int darray_push(DArray *array, void *el)
-{
-	array->contents[array->end] = el;
-	array->end++;
-
-	if(darray_end(array) >= darray_max(array)) {
-		return darray_expand(array);
-	}
-	else {
-		return 0;
-	}
-}

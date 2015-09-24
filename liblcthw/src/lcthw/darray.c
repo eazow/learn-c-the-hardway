@@ -47,17 +47,6 @@ int darray_push(DArray *array, void *el)
 	}
 }
 
-int darray_expand(DArray *array)
-{
-	size_t old_max = array->max;
-	check(darray_resize(array, array->max+array->expand_rate)==0,
-		"Failed to expand array to new size: %d",
-		array->max+(int)array->expand_rate);
-
-	memset(array->contents+old_max, 0, array->expand_rate+1);
-
-}
-
 static inline int darray_resize(DArray *array, size_t newsize)
 {
 	array->max = newsize;
@@ -70,7 +59,20 @@ static inline int darray_resize(DArray *array, size_t newsize)
 	array->contents = contents;
 
 	return 0;
+
 error:
 	return -1;
 
 }
+
+int darray_expand(DArray *array)
+{
+	size_t old_max = array->max;
+	check(darray_resize(array, array->max+array->expand_rate)==0,
+		"Failed to expand array to new size: %d",
+		array->max+(int)array->expand_rate);
+
+	memset(array->contents+old_max, 0, array->expand_rate+1);
+
+}
+

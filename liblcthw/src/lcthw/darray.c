@@ -24,7 +24,7 @@ error:
 	return NULL;
 }
 
-void darray_clear(Darray *array)
+void darray_clear(DArray *array)
 {
 	int i = 0;
 	if(array->element_size>0) {

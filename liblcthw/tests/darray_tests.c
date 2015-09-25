@@ -71,8 +71,6 @@ char *test_push_pop()
 	return NULL;
 }
 
-char *test_
-
 char *all_tests() {
 	mu_suite_start();
 

@@ -24,26 +24,15 @@ error:
 	return NULL;
 }
 
-void darray_destroy(DArray *array)
+void darray_clear(Darray *array)
 {
-	if(array) {
-		if(array->contents) {
-			free(array->contents);
+	int i = 0;
+	if(array->element_size>0) {
+		for(i=0; i<array->max; i++) {
+			if(array->contents[i]!=NULL) {
+				free(array->contents[i]);
+			}
 		}
-		free(array);
-	}
-}
-
-int darray_push(DArray *array, void *el)
-{
-	array->contents[array->end] = el;
-	array->end++;
-
-	if(darray_end(array) >= darray_max(array)) {
-		return darray_expand(array);
-	}
-	else {
-		return 0;
 	}
 }
 
@@ -77,4 +66,52 @@ int darray_expand(DArray *array)
 
 error:
 	return -1;
+}
+
+int darray_contract(DArray *array)
+{
+	int new_size = array->end<(int)array->expand_rate?(int)array->expand_rate:array->end;
+
+	return darray_resize(array, new_size);
+
+}
+
+void darray_destroy(DArray *array)
+{
+	if(array) {
+		if(array->contents) {
+			free(array->contents);
+		}
+		free(array);
+	}
+}
+
+int darray_push(DArray *array, void *el)
+{
+	array->contents[array->end] = el;
+	array->end++;
+
+	if(darray_end(array) >= darray_max(array)) {
+		return darray_expand(array);
+	}
+	else {
+		return 0;
+	}
+}
+
+void *darray_pop(DArray *array)
+{
+	check(array->end-1>=0, "Attempt to pop from empty array.");
+
+	void *el = darray_remove(array, array->end-1);
+	array->end--;
+
+	if(darray_end(array) >(int)array->expand_rate &&
+		darray_end(array)%array->expand_rate==0) {
+		darray_contract(array);
+	}
+	return el;
+
+error:
+	return NULL;
 }

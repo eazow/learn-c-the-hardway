@@ -51,7 +51,7 @@ char *test_get()
 	return NULL;
 }
 
-char *test_push()
+char *test_push_pop()
 {
 	int i = 0;
 	for(i=0; i<1000; i++) {
@@ -61,8 +61,17 @@ char *test_push()
 	}
 	mu_assert(array->max==1300, "Wrong max size");
 
+	for(i=999; i>=0; i--) {
+		int *val = darray_pop(array);
+		mu_assert(val!=NULL, "Shouldn't get a NULL.");
+		mu_assert(*val==i*333, "Wrong value.");
+		free(val);
+	}
+
 	return NULL;
 }
+
+char *test_
 
 char *all_tests() {
 	mu_suite_start();
@@ -72,7 +81,7 @@ char *all_tests() {
 	mu_run_test(test_set);
 	mu_run_test(test_get);
 
-	mu_run_test(test_push);
+	mu_run_test(test_push_pop);
 	mu_run_test(test_destroy);
 
 	return NULL;

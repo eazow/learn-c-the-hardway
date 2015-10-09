@@ -40,7 +40,7 @@ char *run_sort(int (*func)(DArray *, darray_compare), const char *name)
 	debug("--- Testing %s sorting algorithm", name);
 	int rc = func(words, (darray_compare)testcmp);
 	mu_assert(rc==0, "sort failed");
-	mu_assert(is_sorted(words), "didn't sort it").
+	mu_assert(is_sorted(words), "didn't sort it");
 
 	darray_destroy(words);
 

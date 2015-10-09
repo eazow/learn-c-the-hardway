@@ -5,7 +5,7 @@
 
 typedef int (*darray_compare)(const void *a, const void *b);
 
-int darray_qsort(DAaray *array, darray_compare cmp);
+int darray_qsort(DArray *array, darray_compare cmp);
 
 int darray_heapsort(DArray *array, darray_compare cmp);
 

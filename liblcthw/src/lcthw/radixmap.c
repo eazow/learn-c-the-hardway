@@ -32,3 +32,36 @@ void radix_map_destroy(RadixMap *map)
 		free(map);
 	}
 }
+
+static inline void radix_sort()
+{
+}
+
+void radix_map_sort(RadixMap *map)
+{
+    
+}
+
+RMElement *radix_map_find()
+{
+    return NULL;
+}
+
+int radix_map_add(RadixMap *map, uint32_t key, uint32_t value)
+{
+    check(key < UINT32_MAX, "Key can't be equal to UINT32_MAX.");
+
+    RMElement element = {.data={.key=key, .value=value}};
+    check(map->end+1<map->max, "RadixMap is full.");
+
+    map->contents[map->end++] = element;
+
+    radix_map_sort(map);
+    
+    return 0;
+}
+
+int radix_map_delete()
+{
+    return 0;
+}

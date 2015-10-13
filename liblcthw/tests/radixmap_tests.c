@@ -17,6 +17,24 @@ error:
     return 0;
 }
 
+static check_order(RadixMap *map) 
+{
+    RMElement e1, e2;
+
+    unsigned int i = 0;
+
+    for(i = 0; map->end>0 && i<map->end-1; i++) {
+        e1 = map->contents[i];
+        e2 = map->contends[i+1];
+
+        if(e1.data.key > e2.data.key) {
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
 //test for big number of elements
 static char *test_operations()
 {
@@ -29,7 +47,7 @@ static char *test_operations()
     radix_map_sort(map);
     mu_assert(check_order(map), "Failed to properly sort the RadixMap.");
 
-    mu_assert(test_search(map), "Failed to search the test.");
+//    mu_assert(test_search(map), "Failed to search the test.");
     mu_assert(check_order(map), "RadixMap didn't stay sorted after search.");
 
     radix_map_destroy(map);

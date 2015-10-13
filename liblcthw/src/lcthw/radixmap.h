@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 
-typedef struct RMElement {
+typedef union RMElement {
 	uint64_t raw;
 	struct {
 		uint32_t key;

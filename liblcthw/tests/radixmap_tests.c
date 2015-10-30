@@ -17,7 +17,7 @@ error:
     return 0;
 }
 
-static check_order(RadixMap *map) 
+static int check_order(RadixMap *map) 
 {
     RMElement e1, e2;
 
@@ -25,7 +25,7 @@ static check_order(RadixMap *map)
 
     for(i = 0; map->end>0 && i<map->end-1; i++) {
         e1 = map->contents[i];
-        e2 = map->contends[i+1];
+        e2 = map->contents[i+1];
 
         if(e1.data.key > e2.data.key) {
             return 0;

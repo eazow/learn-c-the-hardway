@@ -83,7 +83,7 @@ RMElement *radix_map_find(RadixMap *map, uint32_t to_find)
 	RMElement *data = map->contents;
 
 	while(low <= high) {
-		int middle = low+(high-low)/2
+		int middle = low+(high-low)/2;
 		uint32_t key = data[middle].data.key;
 
 		if(to_find < key) {
@@ -112,6 +112,9 @@ int radix_map_add(RadixMap *map, uint32_t key, uint32_t value)
     radix_map_sort(map);
     
     return 0;
+
+error:
+	return -1;
 }
 
 int radix_map_delete(RadixMap *map, RMElement *el)

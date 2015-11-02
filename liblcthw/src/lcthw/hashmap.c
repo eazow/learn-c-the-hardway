@@ -1,4 +1,4 @@
-undef NDEBUG
+#undef NDEBUG
 #include <stdint.h>
 #include <lcthw/hashmap.h>
 #include <lcthw/dbg.h>
@@ -32,7 +32,7 @@ static uint32_t default_hash(void *a)
 
 Hashmap *hashmap_create(hashmap_compare compare, hashmap_hash hash)
 {
-	Hashmap *map = calloc(1, sizeof(Hashmap);
+	Hashmap *map = calloc(1, sizeof(Hashmap));
 	check_mem(map);
 
 	map->compare = compare==NULL?default_compare:compare;
@@ -113,7 +113,7 @@ int hashmap_set(Hashmap *map, void *key, void *data)
 {
 	uint32_t hash = 0;
 	DArray *bucket = hashmap_find_bucket(map, key, 1, &hash);
-	check(bucket, "Error can't create bucket.")'
+	check(bucket, "Error can't create bucket.");
 
 	HashmapNode *node = hashmap_node_create(hash, key, data);
 	check_mem(node);
@@ -202,4 +202,11 @@ void *hashmap_delete(Hashmap *map, void *key)
 	free(data);
 
 	HashmapNode *ending = darray_pop(bucket);
+
+	if(ending != node) {
+		//alright looks like it's not the last one, swap it
+		darray_set(bucket, i, ending);
+	}
+
+	return data;
 }

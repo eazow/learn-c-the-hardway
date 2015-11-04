@@ -1,8 +1,8 @@
 #ifndef string_algos_h
 #define string_algos_h
 
-#define <lcthw/bstrlib.h>
-#define <lcthw/darray.h>
+#include <lcthw/bstrlib.h>
+#include <lcthw/darray.h>
 
 typedef struct StringScanner {
     bstring in;

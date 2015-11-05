@@ -24,7 +24,7 @@ error:
 	return NULL;
 }
 
-static inline bstree_destroy_cb(BSTreeNode *node)
+static int bstree_destroy_cb(BSTreeNode *node)
 {
 	free(node);
 	return 0;
@@ -38,7 +38,7 @@ void bstree_destroy(BSTree *tree)
 	}
 }
 
-static inline BSTreeNode *bstee_node_create(BSTreeNode *parent, void *key, void *data)
+static inline BSTreeNode *bstree_node_create(BSTreeNode *parent, void *key, void *data)
 {
 	BSTreeNode *node = calloc(1, sizeof(BSTreeNode));
 	check_mem(node);
@@ -149,7 +149,7 @@ static inline int bstree_traverse_nodes(BSTreeNode *node, bstree_traverse_cb tra
 int bstree_traverse(BSTree *tree, bstree_traverse_cb traverse_cb)
 {
 	if(tree->root) {
-		reuturn bstree_traverse_nodes(tree->root, traverse_cb);
+		return bstree_traverse_nodes(tree->root, traverse_cb);
 	}
 
 	return 0;
